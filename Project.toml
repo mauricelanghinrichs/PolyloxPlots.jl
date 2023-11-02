@@ -1,3 +1,8 @@
+name = "PolyloxPlots"
+uuid = "0358878a-c421-4c1a-a06c-b2e07f238aab"
+authors = ["mauricelanghinrichs <m.langhinrichs@icloud.com>"]
+version = "0.1.0"
+
 [deps]
 CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
 Clustering = "aaaa29a8-35af-508c-8bc3-b662a17a0fe5"
