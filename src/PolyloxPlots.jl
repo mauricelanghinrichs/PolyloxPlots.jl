@@ -5,6 +5,8 @@ module PolyloxPlots
     using StatsBase
     using Clustering
 
+    include("plxutils.jl")
+    
     include("plxbubble.jl")
     export plxbubble
 
