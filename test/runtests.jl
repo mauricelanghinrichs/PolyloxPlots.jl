@@ -55,7 +55,7 @@ end
                 :Bbb => [0,0.5,0.5,0,1,2],
                 :Ccc => [0,0,0,1,1,2])
 
-    @test plxheatmap(df) isa Any
+    @test plxbubble(df) isa Any
     # @test_nowarn plxheatmap(df)
 
     celltypenames = nothing
