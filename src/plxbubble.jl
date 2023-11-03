@@ -56,12 +56,12 @@ end
 
 Creates a bubble chart of fate contributions to all individual celltypes in the dataframe (second to last column).
 
-Contributions are computed from the fraction of reads / cell counts into a given celltype, and visualised via markersize and color. 
+Contributions are computed from the fraction of reads / cell counts that flow into a given celltype, and visualised via markersize and color. 
 
 # Arguments
 - `df::DataFrame`: a barcode dataframe, first column (`:Barcode`) contains barcodes, while all further columns contain barcode reads / cell counts of the celltypes.
-- `celltypenames = nothing`: short labels for the celltypes on the y axis; if not specified, the first letter of each celltype will be used (default).
-- `nallfates::Int = 6`: the maximum number of celltypes for which all fate combinations are computed; for celltype numbers above, only existing fates in the data will be shown.
+- `celltypenames = nothing`: short, ideally, single-letter labels for the celltypes on the y axis; if not specified, the first letter of each celltype will be used (default).
+- `nallfates::Int = 6`: the maximum number of celltypes for which all fate combinations are computed; for celltype numbers above, only fates existing in the data will be shown.
 - `resolution = (300,450)`: figure resolution / size.
 
 # Examples
