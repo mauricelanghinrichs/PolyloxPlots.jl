@@ -56,7 +56,7 @@ end
                 :Ccc => [0,0,0,1,1,2])
 
     @test plxbubble(df) isa Any
-    # @test_nowarn plxheatmap(df)
+    # @test_nowarn plxbubble(df)
 
     celltypenames = nothing
     nallfates = 3
