@@ -27,19 +27,26 @@ function dfheatmap!(df, valtransform)
 end
 
 """
-    plxheatmap(prior, dist!, ϵ_target, varexternal; <keyword arguments>)
+    plxheatmap(df; <keyword arguments>)
 
-Run ABC with diffential evolution (de) moves in a Sequential Monte Carlo setup (smc) 
-providing posterior samples and a model evidence estimate.
+Creates a heatmap of barcode clone sizes for all celltypes in the dataframe (second to last column).
+
+Celltypes are reordered based on a hierarchical clustering. Barcodes are ordered in groups of same fate combinations, and within these groups via the sum of counts over all celltypes for a given barcode.
 
 # Arguments
-- `prior`: `Distribution` or `Factored` object specifying the parameter prior.
-- `nparticles::Int=100`: number of total particles to use for inference.
+- `df::DataFrame`: a barcode dataframe, first column (`:Barcode`) contains barcodes, while all further columns contain barcode reads / cell counts of the celltypes.
+- `valtransform = x -> x==zero(x) ? -1 : log(x)`: function used to transform barcode read / cell count values (values for the colorbar).
+- `resolution = (200,250)`: figure resolution / size.
 
 # Examples
 ```julia-repl
-julia> using ABCdeZ, Distributions;
-julia> data = 5;
+julia> using DataFrames, PolyloxPlots;
+julia> df = DataFrame(:Barcode => 1:10, 
+                        :A => [10,0,0,1,3,5,3,1,2,5],
+                        :B => [1,8,4,0,0,0,0,3,2,1],
+                        :C => [10,0,1,1,5,5,7,1,0,5])
+julia> fig, ax, hm = plxheatmap(df)
+julia> save("plxheatmap.pdf", fig)
 ```
 """
 function plxheatmap(df::DataFrame;
