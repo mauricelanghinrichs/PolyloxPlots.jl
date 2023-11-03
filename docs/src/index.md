@@ -3,26 +3,26 @@
 CurrentModule = PolyloxPlots
 ```
 
-## PolyloxPlots.jl
+# PolyloxPlots.jl
 
 Some plot methods for Polylox / barcoding data.
 
 ```@contents
 ```
 
-### Heatmap
+*Heatmap*
 
 ```@docs
 plxheatmap
 ```
 
-### Bubble plot
+*Bubble plot*
 
 ```@docs
 plxbubble
 ```
 
-### Index
+*Index*
 
 ```@index
 ```
