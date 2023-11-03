@@ -26,6 +26,22 @@ function dfheatmap!(df, valtransform)
     df
 end
 
+"""
+    plxheatmap(prior, dist!, ϵ_target, varexternal; <keyword arguments>)
+
+Run ABC with diffential evolution (de) moves in a Sequential Monte Carlo setup (smc) 
+providing posterior samples and a model evidence estimate.
+
+# Arguments
+- `prior`: `Distribution` or `Factored` object specifying the parameter prior.
+- `nparticles::Int=100`: number of total particles to use for inference.
+
+# Examples
+```julia-repl
+julia> using ABCdeZ, Distributions;
+julia> data = 5;
+```
+"""
 function plxheatmap(df::DataFrame;
                 valtransform = x -> x==zero(x) ? -1 : log(x),
                 resolution = (200,250))
