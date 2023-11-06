@@ -90,7 +90,7 @@ function plxbubble(df::DataFrame;
     celltypes = celltypes[firstindex(celltypes)+1:end]
 
     fig, ax, sc = scatter(x, y, 
-                    markersize=sqrt.(readfraction) .* 80,
+                    markersize=sqrt.(readfraction) .* 50,
                     strokewidth=0,
                     color=readfraction,
                     colormap=:cool,
