@@ -23,7 +23,8 @@ function dfheatmap!(df, valtransform)
     df[!, :Sum] = sum(eachcol(df[:, celltypes]))
 
     sort!(df, [:Fate, :Sum], rev=[false, false])
-    select!(df, Not(:Fate, :Sum))
+    select!(df, Not(:Fate))
+    select!(df, Not(:Sum))
     
     # transform values values given by transform
     df[!, celltypes] .= mapcols!(col -> valtransform.(col), df[!, celltypes])
