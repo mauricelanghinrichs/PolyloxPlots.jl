@@ -7,7 +7,20 @@ function dfheatmap!(df, valtransform)
     # df = df[sum(eachcol(df[:, celltypes])) .> 0.0, :]
 
     # reorder celltypes / columns by hierarchical clustering
-    d = (corkendall(Matrix(df[!, celltypes])) .- 1) ./ (-2)
+    mat = Matrix(df[!, celltypes])
+    d = (corkendall(mat) .- 1) ./ (-2)
+
+    # (repair NaNs; can happen if celltypes have no variation)
+    for i in axes(d, 1), j in axes(d, 2)
+        if isnan(d[i, j])
+            if mat[:, i] == mat[:, j]
+                d[i, j] = 0.0
+            else
+                d[i, j] = 1.0
+            end
+        end
+    end
+
     hcl = hclust(d, linkage=:single, branchorder=:optimal)
     
     celltypes = celltypes[hcl.order]
