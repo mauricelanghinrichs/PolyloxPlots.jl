@@ -55,7 +55,7 @@ Celltypes are reordered based on a hierarchical clustering with Kendall rank cor
 # Arguments
 - `df::DataFrame`: a barcode dataframe, first column (`:Barcode`) contains barcodes, while all further columns contain barcode reads / cell counts of the celltypes.
 - `valtransform = x -> x==zero(x) ? -1 : log(x)`: function that transforms barcode read / cell count values (transformed values used for the colorbar).
-- `resolution = (200,250)`: figure resolution / size.
+- `size = (200,250)`: figure size.
 
 # Examples
 ```julia-repl
@@ -71,7 +71,7 @@ julia> save("plxheatmap.pdf", fig)
 """
 function plxheatmap(df::DataFrame;
                 valtransform = x -> x==zero(x) ? -1 : log(x),
-                resolution = (200,250))
+                size = (200,250))
     
     df = deepcopy(df)
     checkdf(df)
@@ -83,7 +83,7 @@ function plxheatmap(df::DataFrame;
 
     fig, ax, hm = heatmap(transpose(Matrix(df[!, celltypes])),
             colormap=:jet,
-            figure = (; resolution=resolution, 
+            figure = (; size=size, 
                         # fontsize=12, 
                         fonts=(; regular="Helvetica Neue",
                                 bold="Helvetica Neue",

@@ -62,7 +62,7 @@ Contributions are computed from the fraction of reads / cell counts that flow in
 - `df::DataFrame`: a barcode dataframe, first column (`:Barcode`) contains barcodes, while all further columns contain barcode reads / cell counts of the celltypes.
 - `celltypenames = nothing`: short, ideally, single-letter labels for the celltypes on the y axis; if not specified, the first letter of each celltype will be used (default).
 - `nallfates::Int = 6`: the maximum number of celltypes for which all fate combinations are computed; for celltype numbers above, only fates existing in the data will be shown.
-- `resolution = (300,450)`: figure resolution / size.
+- `size = (300,450)`: figure size.
 
 # Examples
 ```julia-repl
@@ -79,7 +79,7 @@ julia> save("plxbubble.pdf", fig)
 function plxbubble(df::DataFrame;
                 celltypenames = nothing,
                 nallfates::Int = 6,
-                resolution = (300,450))
+                size = (300,450))
 
     df = deepcopy(df)
     checkdf(df)
@@ -96,7 +96,7 @@ function plxbubble(df::DataFrame;
                     colormap=:cool,
                     colorrange=(0,1),
                     alpha=0.8,
-                    figure = (; resolution=resolution, 
+                    figure = (; size=size, 
                                 # fontsize=12, 
                                 fonts=(; regular="Helvetica Neue",
                                         bold="Helvetica Neue",
